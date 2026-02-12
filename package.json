@@ -1,0 +1,17 @@
+{
+  "name": "stingator-hfn-ee",
+  "version": "1.2.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^17.2.3",
+    "express": "^4.19.2",
+    "mysql2": "^3.11.0",
+    "node-cron": "^4.2.1",
+    "pdfkit": "^0.17.2"
+  }
+}
