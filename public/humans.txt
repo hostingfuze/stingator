@@ -1,0 +1,5 @@
+Site: https://stingator.hfn.ee
+Purpose: Registru PSI stingătoare + informare + print/export
+Stack: Static HTML/CSS/JS + Cloudflare
+Contact: https://stingator.hfn.ee/feedback.html
+

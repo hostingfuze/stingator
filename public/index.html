@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#b91c1c">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stingătoare PSI" href="/opensearch.xml">
+    <title>Registru PSI Online | Ghid Stingătoare Incendiu & OMAI 135/2023</title>
+    <meta name="description" content="Registru PSI Online pentru stingătoare omologate conform OMAI 135/2023. Evidență digitală PSI, tipuri de stingătoare P (pulbere), SM (spumă), G (CO₂), F (bucătării) și D (metale).">
+    <meta name="keywords" content="stingătoare incendiu, verificare stingătoare, registru psi, OMAI 135/2023, stingător P6, stingător CO2, stingător bucătărie tip F, legislație pompieri">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://stingator.hfn.ee/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ghid Complet Stingătoare și Legislație PSI">
+    <meta property="og:description" content="Află ce stingător să alegi și când trebuie verificat. Folosește registrul online gratuit conform noilor norme.">
+    <meta property="og:image" content="https://stingator.hfn.ee/img/media-registru-stingator.png">
+    <meta property="og:url" content="https://stingator.hfn.ee/">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Ghid Stingătoare Incendiu & Registru PSI",
+      "description": "Totul despre stingătoare de incendiu: tipuri, legislație și verificare.",
+      "author": {
+        "@type": "Person",
+        "name": "Mihaila Valentin Eugen",
+        "jobTitle": "Tehnician",
+        "url": "https://www.facebook.com/fuze.b2b/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Info PSI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://stingator.hfn.ee/img/registru-psi.png"
+        }
+      },
+      "mainEntity": {
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "Când trebuie verificate stingătoarele de incendiu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Conform OMAI 135/2023, verificarea specializată se face anual de către o firmă autorizată IGSU, iar verificarea vizuală se face lunar de către beneficiar."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Ce tip de stingător este bun pentru bucătării?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pentru bucătării comerciale (friteuze, uleiuri încinse) se utilizează obligatoriu stingătoarele Tip F (Chimic Umed), deoarece previn reaprinderea."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Care este durata de viață a unui stingător?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Durata normată de viață a stingătoarelor este de 20 de ani pentru recipient, condiționată de testele hidraulice periodice."
+          }
+        }]
+      }
+    }
+    </script>
+    <style>
+        :root {
+            --primary: #d32f2f; /* Roșu PSI */
+            --dark: #212529;
+            --light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            /* Flexbox pentru a împinge footerul jos */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #fce4ec 0%, #ffffff 100%);
+            padding: 80px 0;
+            border-bottom: 5px solid var(--primary);
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .btn-psi {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-psi:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Carduri Tipuri */
+        .type-card {
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .type-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(211, 47, 47, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .btn-detail {
+            border-radius: 50px;
+            font-weight: 600;
+            border-width: 2px;
+        }
+
+        /* Sectiune Legislatie */
+        .leg-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .check-step {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+        .check-step::before {
+            content: '\f00c';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary);
+        }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #212529;
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+            z-index: 1050;
+            display: none; /* Ascuns implicit, activat de JS */
+            border-top: 3px solid var(--primary);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0;
+            margin-top: auto; /* Împinge footerul jos */
+        }
+    
+/* ===== Enterprise Performance & UX Pack (4/6) ===== */
+/* Offline/Online indicator (non-intrusive) */
+.net-status {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 2000;
+    display: none;
+    padding: 10px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.net-status.offline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #212529;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.net-status a {
+    color: #ffc107;
+    text-decoration: underline;
+}
+/* Reduce layout shifts for icons (Font Awesome) */
+.fa-solid, .fa-regular, .fa-brands { line-height: 1; }
+    
+/* ===== Enterprise SEO Hero (Professional) ===== */
+.psi-hero-wrap{
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(220,53,69,.25), rgba(13,110,253,.12), transparent 55%),
+              radial-gradient(900px 500px at 80% 30%, rgba(255,193,7,.18), transparent 55%),
+              linear-gradient(180deg, #0b1220 0%, #0b1220 45%, #ffffff 45%, #ffffff 100%);
+}
+.psi-hero{
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(15, 23, 42, .72);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+}
+.psi-hero .kicker{
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .78rem;
+  color: rgba(255,255,255,.70);
+}
+.psi-hero h1{
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.psi-hero .lead{
+  color: rgba(255,255,255,.78);
+}
+.psi-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  padding:.35rem .55rem;
+  border-radius: 999px;
+  font-size:.78rem;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.78);
+  white-space: nowrap;
+}
+.psi-card{
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+.psi-card .icon{
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(220,53,69,.10);
+  border: 1px solid rgba(220,53,69,.18);
+}
+.psi-card .icon i{ font-size: 1.1rem; color: #dc3545; }
+.psi-mini{
+  font-size: .92rem;
+  color: rgba(0,0,0,.68);
+}
+@media (max-width: 576px){
+  .psi-hero h1{ font-size: 1.9rem; }
+}
+    
+/* ===== Registru PSI Online Highlight Card ===== */
+.psi-keyword-card{
+    background: linear-gradient(135deg, rgba(220,53,69,0.10), rgba(41,98,255,0.10));
+    border: 1px solid rgba(220,53,69,0.25);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+}
+.psi-keyword-card::before{
+    content:"";
+    position:absolute;
+    top:-40%;
+    right:-20%;
+    width:60%;
+    height:140%;
+    background: radial-gradient(circle, rgba(220,53,69,0.18), transparent 70%);
+    transform: rotate(15deg);
+}
+.psi-keyword-badge{
+    display:inline-block;
+    background:#dc3545;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:.75rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+    </style>
+</head>
+<body>
+
+
+
+<!-- Network status (offline UX) -->
+<div id="netStatus" class="net-status offline" role="status" aria-live="polite" aria-atomic="true">
+    <span aria-hidden="true">●</span>
+    <span>Ești offline. Unele funcții pot fi limitate.</span>
+    <a href="/" class="ms-1">Reîncearcă</a>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/" title="Acasa - Info PSI">
+                <i class="fa-solid fa-fire-extinguisher"></i> Info PSI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Deschide meniul de navigare">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#tipuri">Tipuri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#utilizare">Clase Incendiu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#legislatie">Legislație</a></li>
+                    
+                    <li class="nav-item"><a class="nav-link" href="ajutor.html"><i class="fa-solid fa-circle-question"></i> Ajutor</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html"><i class="fa-solid fa-comment-dots"></i> Feedback</a></li>
+                    
+                    <li class="nav-item ms-lg-3">
+                        <a href="registru.html" class="btn btn-psi btn-sm">
+                            <i class="fa-solid fa-clipboard-list"></i> Deschide Registru
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">Ghid Stingătoare Incendiu și Legislație PSI (OMAI 135/2023)</h1>
+                    <p class="lead mb-4">Informații tehnice complete despre tipurile de stingătoare, termenele legale de verificare ISCIR și acces gratuit la Registrul de Evidență PSI.</p>
+                    <div class="d-flex gap-3">
+                        <a href="registru.html" class="btn btn-psi">
+                            <i class="fa-solid fa-pen-to-square"></i> Completează Registrul
+                        </a>
+                        <a href="#tipuri" class="btn btn-outline-dark rounded-pill px-4">Vezi Tipuri</a>
+                    </div>
+                </div>
+                 <div class="col-lg-6 text-center mt-5 mt-lg-0">
+                    <img src="/img/registru-evidenta-stingator-768.webp"
+  srcset="
+    /img/registru-evidenta-stingator-384.webp 384w,
+    /img/registru-evidenta-stingator-512.webp 512w,
+    /img/registru-evidenta-stingator-768.webp 768w,
+    /img/registru-evidenta-stingator-1024.webp 1024w
+  "
+  sizes="(max-width: 576px) 92vw,
+         (max-width: 992px) 50vw,
+         600px"
+  alt="Ilustrație stingător incendiu roșu și protecția muncii PSI"
+  class="img-fluid"
+  width="600"
+  height="400"
+  fetchpriority="high"
+  decoding="async"
+  style="max-height: 400px; width: auto;" >
+                </div>
+</div>
+    </section>
+
+    <section id="tipuri" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <!-- Keyword Focus Card -->
+<section class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-11">
+      <div class="psi-card psi-keyword-card p-4 p-md-5">
+        <span class="psi-keyword-badge">Registru PSI Online</span>
+        <div class="row g-4 align-items-center position-relative">
+          <div class="col-md-8">
+            <h2 class="mb-2">Registru PSI Online pentru Stingătoare</h2>
+            <p class="lead mb-3">
+              Platformă digitală profesională pentru evidența stingătoarelor de incendiu,
+              conformitate PSI și gestionare centralizată a echipamentelor de protecție la incendiu.
+            </p>
+            <p class="small text-muted mb-3">
+              <strong>Conformitate legală:</strong> OMAI 135/2023, art. 8, alin. (4) – 
+              „Rezultatele controlului se înscriu într-un registru de evidență, întocmit în format letric 
+              sau electronic, conform modelului prevăzut în anexa 2”.
+            </p>
+            <ul class="psi-mini">
+              <li>registru digital de evidență PSI</li>
+              <li>monitorizare verificări și expirări</li>
+              <li>clasificare stingătoare omologate</li>
+              <li>conformitate legală PSI</li>
+              <li>documentație PSI centralizată</li>
+            </ul>
+          </div>
+          <div class="col-md-4 text-md-end">
+            <a href="/registru.html" class="btn btn-danger btn-lg shadow">
+              Accesează Registru PSI Online
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bază legală PSI (OMAI 135/2023) -->
+<section class="container my-5">
+  <div class="psi-card p-4 p-md-5" style="background:linear-gradient(135deg, rgba(220,53,69,0.08), rgba(41,98,255,0.08)); border:1px solid rgba(0,0,0,.08);">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-8">
+        <div class="d-inline-flex align-items-center gap-2 mb-2" style="font-size:.85rem;">
+          <span class="badge text-bg-danger">OMAI 135/2023</span>
+          <span class="text-muted">Art. 8 alin. (4) — registru letric sau electronic</span>
+        </div>
+        <h2 class="mb-2">Registru de evidență PSI — bază legală</h2>
+        <p class="mb-0 text-muted">
+          „Rezultatele controlului se înscriu într-un registru de evidență, întocmit în format letric sau electronic,
+          conform modelului prevăzut în anexa 2”.
+        </p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a href="/legal.html" class="btn btn-outline-danger btn-lg">
+          Vezi baza legală PSI <i class="fa-solid fa-arrow-right small ms-1"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<h2 class="fw-bold">Tipuri Principale de Stingătoare Omologate</h2>
+                <p class="text-muted mb-4">Ghid tehnic pentru alegerea stingătorului corect conform clasei de incendiu.</p>
+
+                <div class="alert alert-secondary d-inline-block shadow-sm text-start text-md-center border-0 bg-white" style="font-size: 0.9rem; max-width: 900px;">
+                    <strong>LISTA PRODUSELOR CERTIFICATE IGSU</strong><br>
+                    Conform O.M.A.I. nr. 88/2012. Verifică întotdeauna dacă echipamentul este certificat pentru piața din România.
+                    
+                    <div class="mt-3 text-center">
+                        <a href="stingatoare-omologate-igsu.html" target="_blank" class="btn btn-dark btn-sm rounded-pill px-4" rel="noopener">
+                            <i class="fa-solid fa-file-arrow-down me-2"></i> Descarcă Lista PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="type-card p-4">
+                        <article>
+                            <div class="icon-box"><i class="fa-solid fa-wind"></i></div>
+                            <h3>Tip P (Pulbere)</h3>
+                            <p class="small text-muted">Modele uzuale: P1, P2, P6, P50</p>
+                            <p>Soluția universală. Cel mai bun raport preț/eficiență pentru spații comerciale și industriale.</p>
+                            <ul class="list-unstyled small text-success">
+                                <li><i class="fa-solid fa-check me-2"></i>Clase foc: A, B, C, E</li>
+                                <li><i class="fa-solid fa-check me-2"></i>Electrice (până la 1000V)</li>
+                            </ul>
+                            <a href="detalii-pulbere.html" class="btn btn-outline-danger btn-detail w-100 mt-3" title="Detalii tehnice stingătoare cu pulbere P6">
+                                Detalii Tip P <i class="fa-solid fa-arrow-right small ms-1"></i>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="type-card p-4">
+                        <article>
+                            <div class="icon-box" style="color:#0d6efd; background:rgba(13, 110, 253, 0.1);"><i class="fa-solid fa-soap"></i></div>
+                            <h3>Tip SM (Spumă)</h3>
+                            <p class="small text-muted">Modele uzuale: SM6, SM9</p>
+                            <p>Formează o peliculă izolatoare. Recomandate pentru lichide inflamabile și materiale solide.</p>
+                            <ul class="list-unstyled small">
+                                <li class="text-success"><i class="fa-solid fa-check me-2"></i>Clase foc: A, B</li>
+                                <li class="text-danger fw-bold"><i class="fa-solid fa-xmark me-2"></i>INTERZIS la electrice!</li>
+                            </ul>
+                            <a href="detalii-spuma.html" class="btn btn-outline-primary btn-detail w-100 mt-3" title="Detalii tehnice stingătoare cu spumă mecanică">
+                                Detalii Tip SM <i class="fa-solid fa-arrow-right small ms-1"></i>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="type-card p-4">
+                        <article>
+                            <div class="icon-box" style="color:#212529; background:rgba(33, 37, 41, 0.1);"><i class="fa-solid fa-cloud"></i></div>
+                            <h3>Tip G (CO2)</h3>
+                            <p class="small text-muted">Modele uzuale: G2, G5</p>
+                            <p>Protejează echipamentele electronice. Gazul nu lasă reziduuri și nu deteriorează circuitele.</p>
+                            <ul class="list-unstyled small text-success">
+                                <li><i class="fa-solid fa-check me-2"></i>Clasa B (Lichide)</li>
+                                <li><i class="fa-solid fa-check me-2"></i>Servere / Tablouri electrice</li>
+                            </ul>
+                            <a href="detalii-co2.html" class="btn btn-outline-dark btn-detail w-100 mt-3" title="Detalii tehnice stingătoare dioxid de carbon">
+                                Detalii Tip G <i class="fa-solid fa-arrow-right small ms-1"></i>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="type-card p-4 border-warning border-top-0 border-end-0 border-bottom-0 border-3">
+                        <article>
+                            <div class="icon-box" style="color:#ffc107; background:rgba(255, 193, 7, 0.1);"><i class="fa-solid fa-utensils"></i></div>
+                            <h3>Tip F (Bucătării)</h3>
+                            <p class="small text-muted">Chimic Umed</p>
+                            <p>Special pentru uleiuri de gătit încinse. Evită reaprinderea prin saponificare.</p>
+                            <ul class="list-unstyled small">
+                                <li class="text-warning fw-bold"><i class="fa-solid fa-check me-2"></i>Uleiuri / Grăsimi</li>
+                                <li class="text-muted"><i class="fa-solid fa-check me-2"></i>Horeca / Restaurante</li>
+                            </ul>
+                            <a href="tip_f.html" class="btn btn-outline-warning text-dark btn-detail w-100 mt-3" title="Detalii stingătoare Wet Chemical">
+                                Detalii Tip F <i class="fa-solid fa-arrow-right small ms-1"></i>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="type-card p-4 border-secondary border-top-0 border-end-0 border-bottom-0 border-3">
+                        <article>
+                            <div class="icon-box" style="color:#607d8b; background:rgba(96, 125, 139, 0.1);"><i class="fa-solid fa-industry"></i></div>
+                            <h3>Tip D (Metale)</h3>
+                            <p class="small text-muted">Pulberi Speciale</p>
+                            <p>Pentru incendii violente de metale (magneziu, litiu, sodiu). Uz strict industrial.</p>
+                            <ul class="list-unstyled small">
+                                <li class="text-secondary fw-bold"><i class="fa-solid fa-check me-2"></i>Metale combustibile</li>
+                                <li class="text-muted"><i class="fa-solid fa-check me-2"></i>Laboratoare / Uzine</li>
+                            </ul>
+                            <a href="tip_d.html" class="btn btn-outline-secondary btn-detail w-100 mt-3" title="Detalii stingătoare clasa D">
+                                Detalii Tip D <i class="fa-solid fa-arrow-right small ms-1"></i>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+<div class="col-md-6 col-lg-4">
+    <div class="type-card p-4 border-primary border-top-0 border-end-0 border-bottom-0 border-3" style="border-color: #2962ff !important;">
+        <div>
+            <div class="icon-box" style="color:#2962ff; background:rgba(41, 98, 255, 0.1);"><i class="fa-solid fa-car-battery"></i></div>
+            <h3>Tip Li-ion (Baterii)</h3>
+            <p class="small text-muted">Tehnologie AVD / F-500</p>
+            <p>Pentru trotinete, laptopuri și dispozitive cu acumulatori litiu-ion.</p>
+            <ul class="list-unstyled small">
+                <li style="color:#2962ff" class="fw-bold"><i class="fa-solid fa-check me-2"></i>Baterii Li-ion</li>
+                <li class="text-muted"><i class="fa-solid fa-check me-2"></i>Oprește fuga termică</li>
+            </ul>
+        </div>
+        <a href="li-ion.html" class="btn btn-outline-primary btn-detail w-100 mt-3" style="color:#2962ff; border-color:#2962ff;" aria-label="Detalii stingătoare baterii Li-ion">
+            Detalii <i class="fa-solid fa-arrow-right small ms-1"></i>
+        </a>
+    </div>
+</div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section id="utilizare" class="py-5">
+        <div class="container">
+            <h2 class="fw-bold mb-4 text-center">Clasele de Incendiu și Stingătorul Potrivit</h2>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle shadow-sm">
+                    <caption class="visually-hidden">Tabel compatibilitate clase de incendiu cu tipurile de stingătoare</caption>
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="text-center">Clasa</th>
+                            <th>Material Combustibil</th>
+                            <th>Agent de Stingere Recomandat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center fw-bold bg-light fs-4 text-success">A</td>
+                            <td>
+                                <strong>Materiale Solide (Lemn, Hârtie)</strong><br>
+                                Focare ce produc jar (textile, cauciuc, deșeuri).
+                            </td>
+                            <td><span class="badge bg-danger">Apă</span> <span class="badge bg-secondary">Spumă</span> <span class="badge bg-primary">Pulbere</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fw-bold bg-light fs-4 text-danger">B</td>
+                            <td>
+                                <strong>Lichide Inflamabile</strong><br>
+                                Benzină, motorină, alcool, solvenți, vopseluri.
+                            </td>
+                            <td><span class="badge bg-secondary">Spumă</span> <span class="badge bg-primary">Pulbere</span> <span class="badge bg-dark">CO2</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fw-bold bg-light fs-4 text-warning">C</td>
+                            <td>
+                                <strong>Gaze Inflamabile</strong><br>
+                                Metan, propan, butan, hidrogen (centrale termice).
+                            </td>
+                            <td><span class="badge bg-primary">Pulbere</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fw-bold bg-light fs-4 text-primary">E</td>
+                            <td>
+                                <strong>Instalații Electrice (sub tensiune)</strong><br>
+                                Echipamente IT, servere, panouri electrice.
+                            </td>
+                            <td><span class="badge bg-dark">CO2 (Ideal)</span> <span class="badge bg-primary">Pulbere</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fw-bold bg-light fs-4" style="color: #607d8b;">D</td>
+                            <td>
+                                <strong>Metale Combustibile</strong><br>
+                                Magneziu, litiu, sodiu, potasiu, aluminiu (pulbere).
+                            </td>
+                            <td><span class="badge bg-secondary">Pulbere Specială D</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center fw-bold bg-light fs-4" style="color: #ffc107;">F</td>
+                            <td>
+                                <strong>Medii de Gătire</strong><br>
+                                Uleiuri vegetale și grăsimi încinse (friteuze).
+                            </td>
+                            <td><span class="badge text-dark bg-warning">Chimic Umed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="legislatie" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <h3 class="fw-bold text-danger mb-3"><i class="fa-solid fa-screwdriver-wrench"></i> Întreținere și Cicluri de Viață</h3>
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        
+                        <div class="check-step">
+                            <strong>1. Verificarea Anuală (Obligatorie):</strong>
+                            <br>Se execută de o firmă autorizată IGSU. Conform Art. 22 din OMAI 135/2023, dovada se face prin aplicarea <strong>etichetei de control</strong> (autocolantă/hologramă) cu data verificării.
+                        </div>
+
+                        <div class="check-step">
+                            <strong>2. Reîncărcarea (La 5 ani sau după uz):</strong>
+                            <br>Implica demontarea stingătorului și înlocuirea agentului. Pe lângă etichetă, firmele profesioniste aplică un <strong>inel de service</strong> pe gâtul buteliei, care atestă deschiderea și verificarea interioară.
+                        </div>
+
+                        <div class="check-step">
+                            <strong>3. Casarea (Scoaterea din uz):</strong>
+                            <br>Stingătoarele au o durată normată de viață de <strong>maxim 20 de ani</strong> a recipientului. După acest termen, ele trebuie scoase din uz și distruse obligatoriu, conform ISCIR.
+                        </div>
+
+                        <div class="alert alert-warning mt-3 small border-warning">
+                            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                            <strong>Atenție:</strong> Termenul de 20 de ani este valabil doar dacă recipientul nu prezintă coroziune și trece cu succes testele hidraulice periodice (la fiecare 5/10 ani).
+                       </div>
+                      <a href="durata-viata.html" class="btn btn-warning btn-sm w-100 fw-bold shadow-sm" aria-label="Află detalii despre durata de viață și casarea stingătoarelor">
+                            <i class="fa-solid fa-calendar-xmark me-2"></i> Detalii Durată de Viață &amp; Casare
+                      </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h3 class="fw-bold mb-3"><i class="fa-solid fa-scale-balanced"></i> Legislație PSI (OMAI 135/2023)</h3>
+                    <div class="leg-box">
+                        <h5 class="fw-bold">OMAI Nr. 135/2023 - Norme Tehnice</h5>
+                        <p><em>Actul normativ principal privind utilizarea, verificarea și scoaterea din uz a mijloacelor de apărare împotriva incendiilor.</em></p>
+                        <hr>
+                        <p class="small">Obligații esențiale:</p>
+                        <ul class="small mb-0">
+                            <li>Dotarea spațiilor conform scenariului de securitate.</li>
+                            <li><strong>Întocmirea Registrului de Evidență</strong> (Anexa 2).</li>
+                            <li>Mentenanță doar cu personal atestat.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <p class="fw-bold mb-2">Evită amenzile ISU. Ține evidența online.</p>
+                        <a href="registru.html" class="btn btn-danger btn-lg w-100 shadow mb-4">
+                            ACCESEAZĂ REGISTRUL DE EVIDENȚĂ
+                        </a>
+
+                        <div class="pt-3 border-top text-start">
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="fa-solid fa-gavel text-secondary fs-4 mt-1"></i>
+                                <div>
+                                    <strong class="text-danger small">Știai că?</strong>
+                                    <p class="small text-muted mb-2">
+                                        Lipsa evidenței stingătoarelor constituie contravenție și se sancționează conform <strong>Art. 45 din Legea 307/2006</strong> cu amendă de până la <strong>5.000 - 10.000 lei</strong>.
+                                    </p>
+                                    <a href="https://legislatie.just.ro/Public/DetaliiDocumentAfis/212916" target="_blank" class="btn btn-link btn-sm text-decoration-none p-0 text-dark fw-bold" style="font-size: 0.85rem;">
+                                        <i class="fa-solid fa-external-link-alt me-1"></i> Citește Art. 44-45 din Lege
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-2">&copy; 2025 Info PSI. Ghid conformitate cu OMAI 135/2023.</p>
+            <nav aria-label="Footer links">
+                <a href="termeni.html" class="text-white-50 text-decoration-none small me-2">Termeni</a>
+                <a href="confidentialitate.html" class="text-white-50 text-decoration-none small">Politica de Confidențialitate</a>
+            </nav>
+            <p class="small text-white-50 mt-2">Acest site este un ghid informativ. Pentru servicii autorizate, contactați o firmă acreditată.</p>
+        </div>
+    </footer>
+
+    <div id="cookie-banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 mb-3 mb-md-0">
+                    <p class="mb-0 small">
+                        <strong>Folosim cookie-uri!</strong> Acest site utilizează cookie-uri pentru a vă oferi o experiență mai bună și pentru a salva progresul local (în browser) în Registrul Online. Continuarea navigării implică acceptarea lor. 
+                        <a href="confidentialitate.html" class="text-warning text-decoration-underline">Află mai multe</a>.
+                    </p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <button id="accept-cookies" class="btn btn-sm btn-light fw-bold text-dark me-2">
+                        <i class="fa-solid fa-check"></i> Acceptă Tot
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+
+            // Verifică dacă utilizatorul a acceptat deja (în localStorage)
+            if (!localStorage.getItem('cookieConsent')) {
+                // Dacă nu, afișează bannerul cu o mică întârziere pentru efect vizual
+                setTimeout(() => {
+                    cookieBanner.style.display = 'block';
+                }, 1000);
+            }
+
+            // La click pe Accept
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'true');
+                cookieBanner.style.display = 'none';
+            });
+        });
+    </script>
+
+<script>
+  // ===== Enterprise UX: Online/Offline indicator =====
+  (function () {
+    const el = document.getElementById('netStatus');
+    if (!el) return;
+
+    function update() {
+      if (navigator.onLine) el.classList.remove('offline');
+      else el.classList.add('offline');
+    }
+
+    window.addEventListener('online', update);
+    window.addEventListener('offline', update);
+    update();
+  })();
+
+  // ===== Enterprise PWA: SW register + update check (safe) =====
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+      try {
+        const reg = await navigator.serviceWorker.register('/service-worker.js');
+        // Trigger update checks on each load (safe for production)
+        if (reg && typeof reg.update === 'function') reg.update();
+      } catch (e) {
+        // Intentionally silent: avoid breaking UX on SW issues
+      }
+    });
+  }
+</script>
+
+<!-- Enterprise Footer Links -->
+<section class="container pb-4">
+  <div class="d-flex flex-wrap gap-3 small text-muted justify-content-center justify-content-md-start">
+    <a href="/legal.html" class="text-decoration-none">Bază legală PSI</a>
+    <a href="/sitemap.xml" class="text-decoration-none">Sitemap</a>
+    <a href="/robots.txt" class="text-decoration-none">Robots</a>
+  </div>
+</section>
+
+</body>
+</html>

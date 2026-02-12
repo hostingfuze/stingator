@@ -1,0 +1,6 @@
+Contact: https://stingator.hfn.ee/feedback.html
+Preferred-Languages: ro, en
+Policy: https://stingator.hfn.ee/termeni.html
+Canonical: https://stingator.hfn.ee/security.txt
+Expires: 2027-01-01T00:00:00.000Z
+

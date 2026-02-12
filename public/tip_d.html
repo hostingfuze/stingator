@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stingătoare Tip D (Metale) - Detalii</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root { --primary: #d32f2f; --dark: #212529; --light: #f8f9fa; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; color: #333; line-height: 1.6; }
+        .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .navbar-brand { font-weight: 700; color: var(--primary) !important; }
+        /* Gradient industrial gri */
+        .hero-section { background: linear-gradient(135deg, #eceff1 0%, #ffffff 100%); padding: 60px 0; border-bottom: 5px solid #607d8b; }
+        .hero-title { font-size: 2.2rem; font-weight: 800; color: var(--dark); margin-bottom: 20px; }
+        .btn-psi { background-color: var(--primary); color: white; padding: 10px 25px; border-radius: 50px; border: 2px solid var(--primary); text-decoration: none; font-weight: 600; }
+        .btn-psi:hover { background-color: white; color: var(--primary); }
+        .spec-box { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-left: 4px solid #607d8b; height: 100%; }
+        .check-step { position: relative; padding-left: 30px; margin-bottom: 10px; }
+        .check-step::before { content: '\f00c'; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: #607d8b; }
+        footer { background: var(--dark); color: white; padding: 30px 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-fire-extinguisher"></i> Info PSI</a>
+            <div class="d-flex">
+                <a href="index.html" class="btn btn-outline-dark btn-sm me-2">Inapoi la Acasă</a>
+                <a href="index.html" class="btn btn-psi btn-sm">Deschide Registru</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <span class="badge bg-secondary mb-2">Industrial / Laboratoare</span>
+                    <h1 class="hero-title">Stingătoare Tip D (Metale Combustibile)</h1>
+                    <p class="lead">Echipamente specializate pentru stingerea incendiilor de metale (magneziu, litiu, sodiu), care ard la temperaturi extreme.</p>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <div class="icon-box" style="font-size: 100px; color: #607d8b;">
+                        <i class="fa-solid fa-industry"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h3 class="fw-bold mb-3">Riscuri speciale - Clasa D</h3>
+                    <p>Anumite metale, atunci când sunt sub formă de pulbere, așchii sau în stare topită, se pot aprinde. Aceste incendii:</p>
+                    <ul>
+                        <li>Ard la temperaturi extreme (peste 2000°C).</li>
+                        <li>Reacționează violent cu apa (produc explozii de hidrogen).</li>
+                        <li>Nu pot fi stinse cu pulbere normală (ABC) sau spumă.</li>
+                    </ul>
+                    <p>Stingătoarele Tip D folosesc pulberi speciale (pe bază de clorură de sodiu, cupru sau grafit) care se topesc și formează o crustă solidă peste metal, sufocând focul și absorbind căldura.</p>
+
+                    <div class="alert alert-dark mt-4">
+                        <i class="fa-solid fa-triangle-exclamation text-warning"></i> <strong>Important:</strong> Aceste stingătoare au o lance specială de evacuare (pentru a aplica pulberea ușor, fără presiune mare care ar împrăștia metalul arzând).
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="spec-box">
+                        <h4 class="fw-bold mb-3 text-dark">Domenii de utilizare</h4>
+                        <div class="check-step"><strong>Industria Auto / Aero:</strong> Prelucrare piese magneziu/aluminiu.</div>
+                        <div class="check-step"><strong>Laboratoare Chimice:</strong> Lucru cu Sodiu, Potasiu, Litiu.</div>
+                        <div class="check-step"><strong>Ateliere de prelucrare:</strong> Unde rezultă pilitură metalică fină.</div>
+                        
+                        <hr>
+                        <h5 class="fw-bold text-danger">Contraindicații majore:</h5>
+                        <p class="small">Nu folosiți stingătoare cu Apă, Spumă sau CO2 pe metale care ard! Reacția poate fi explozivă.</p>
+                        <p class="small text-muted"><strong>Notă:</strong> Aceste stingătoare sunt rare în spații civile (birouri, magazine) și sunt necesare strict în zonele industriale specifice.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0 small">&copy; 2025 Evidență PSI. Material informativ bazat pe OMAI 135/2023.</p>
+        </div>
+    </footer>
+</body>
+</html>

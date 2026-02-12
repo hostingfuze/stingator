@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stingătoare Tip F (Bucătării) - Detalii</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root { --primary: #d32f2f; --dark: #212529; --light: #f8f9fa; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; color: #333; line-height: 1.6; }
+        .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .navbar-brand { font-weight: 700; color: var(--primary) !important; }
+        /* Gradient specific galbui pentru uleiuri */
+        .hero-section { background: linear-gradient(135deg, #fffde7 0%, #ffffff 100%); padding: 60px 0; border-bottom: 5px solid #ffc107; }
+        .hero-title { font-size: 2.2rem; font-weight: 800; color: var(--dark); margin-bottom: 20px; }
+        .btn-psi { background-color: var(--primary); color: white; padding: 10px 25px; border-radius: 50px; border: 2px solid var(--primary); text-decoration: none; font-weight: 600; }
+        .btn-psi:hover { background-color: white; color: var(--primary); }
+        .spec-box { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-left: 4px solid #ffc107; height: 100%; }
+        .check-step { position: relative; padding-left: 30px; margin-bottom: 10px; }
+        .check-step::before { content: '\f00c'; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: #ffc107; }
+        footer { background: var(--dark); color: white; padding: 30px 0; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-fire-extinguisher"></i> Info PSI</a>
+            <div class="d-flex">
+                <a href="index.html" class="btn btn-outline-dark btn-sm me-2">Inapoi la Acasă</a>
+                <a href="index.html" class="btn btn-psi btn-sm">Deschide Registru</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <span class="badge bg-warning text-dark mb-2">Special Bucătării</span>
+                    <h1 class="hero-title">Stingătoare Tip F (Uleiuri și Grăsimi)</h1>
+                    <p class="lead">Proiectate special pentru incendiile din bucătăriile comerciale, unde uleiul încins prezintă un risc major de reaprindere și explozie dacă se folosește apa.</p>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <div class="icon-box" style="font-size: 100px; color: #ffc107;">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h3 class="fw-bold mb-3">Fenomenul de Saponificare</h3>
+                    <p>Incendiile de Clasa F (uleiuri de gătit, grăsimi vegetale/animale) sunt foarte periculoase deoarece temperatura uleiului depășește 300°C.</p>
+                    <p>Stingătoarele chimice umede (Tip F) acționează printr-un proces chimic numit <strong>saponificare</strong>. Substanța reacționează cu uleiul încins formând un strat gros, similar săpunului, care:</p>
+                    <ul>
+                        <li>Sigilează suprafața (oprește oxigenul).</li>
+                        <li>Răcește rapid uleiul sub punctul de autoaprindere.</li>
+                    </ul>
+
+                    <div class="alert alert-danger mt-4 border-danger">
+                        <h5 class="alert-heading fw-bold"><i class="fa-solid fa-ban"></i> NICIODATĂ APĂ!</h5>
+                        <p class="mb-0">Nu folosiți niciodată apă pe un incendiu de ulei încins! Apa se evaporă instantaneu și aruncă uleiul arzând în toate direcțiile (explozie de abur).</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="spec-box">
+                        <h4 class="fw-bold mb-3 text-dark">Unde sunt obligatorii?</h4>
+                        <div class="check-step"><strong>Restaurante și Cantine:</strong> Lângă friteuze și plite.</div>
+                        <div class="check-step"><strong>Fast-Food-uri:</strong> Zonele de prăjire intensivă.</div>
+                        <div class="check-step"><strong>Bucătării Profesionale:</strong> Hoteluri, spitale, școli.</div>
+                        
+                        <hr>
+                        <h5 class="fw-bold">Specificații:</h5>
+                        <p class="small text-muted">Sunt eficiente și pe Clasa A (hârtie, ambalaje din bucătărie), dar scopul lor principal este Clasa F.</p>
+                        <p class="small text-muted"><strong>Identificare:</strong> De obicei au eticheta specifică "Chemical Wet" sau mențiunea clară "Pentru uleiuri de gătit".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0 small">&copy; 2025 Evidență PSI. Material informativ bazat pe OMAI 135/2023.</p>
+        </div>
+    </footer>
+</body>
+</html>

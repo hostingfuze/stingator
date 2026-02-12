@@ -1,0 +1,506 @@
+/* ===== Registru PSI - OMAI 135/2023 (Clean) ===== */
+:root{
+  --primary:#d32f2f;
+  --primary-hover:#b71c1c;
+  --bg:#f8f9fa;
+  --dark:#212529;
+  --border:#dee2e6;
+}
+
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color:#333;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  margin:0;
+}
+
+.hidden{ display:none !important; }
+.view{ width:100%; }
+
+.navbar{ box-shadow:0 2px 10px rgba(0,0,0,.08); background:#fff; }
+.navbar-brand{ font-weight:800; color:var(--primary) !important; }
+
+footer{
+  background: var(--dark);
+  color:#fff;
+  padding:24px 0;
+  margin-top:auto;
+  font-size:.9rem;
+}
+
+.auth-card{
+  max-width:420px;
+  margin:48px auto;
+  background:#fff;
+  padding:28px;
+  border-radius:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  border-top:5px solid var(--primary);
+}
+
+.paper-container{
+  max-width:1000px;
+  margin:0 auto 40px auto;
+  background:#fff;
+  border-top:5px solid var(--primary);
+  border-radius:10px;
+  padding:28px;
+  box-shadow:0 8px 22px rgba(0,0,0,.06);
+}
+
+.info-box{
+  background:#fff3cd;
+  border:1px solid #ffeeba;
+  color:#856404;
+  padding:12px 14px;
+  border-radius:8px;
+  font-size:.9rem;
+  margin-bottom:14px;
+}
+
+.control-bar{
+  background:#fff;
+  padding:12px 14px;
+  border-radius:10px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  border-top:3px solid var(--primary);
+  margin:14px auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.control-group{ display:flex; gap:8px; }
+
+.omai-table{ font-size:.85rem; margin-bottom:8px; }
+.omai-table th{ vertical-align:middle; text-align:center; padding:8px 4px; background:#f8f9fa; }
+.omai-table td{ vertical-align:middle; text-align:center; padding:6px 6px; }
+
+.table-input{
+  width:100%;
+  border:1px solid transparent;
+  background:transparent;
+  padding:4px;
+  outline:none;
+  font-size:.85rem;
+  text-align:center;
+  border-radius:6px;
+}
+.table-input:focus{
+  border-color:#86b7fe;
+  background:#fff;
+  box-shadow:0 0 0 .25rem rgba(13,110,253,.18);
+}
+
+.desc-cell{ text-align:left; }
+.triple-field{ text-align:left; line-height:1.25; }
+.triple-field .lbl{ font-weight:800; }
+.triple-field .val{ font-weight:600; }
+
+.date-input{ font-weight:700; color:var(--primary); }
+
+.footer-sign{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-top:26px;
+  gap:22px;
+}
+
+.sig-container{
+  border:2px dashed #ccc;
+  background:#fdfdfd;
+  width:300px;
+  height:120px;
+  margin-top:6px;
+  touch-action:none;
+  border-radius:6px;
+  position:relative;
+}
+#sigCanvas{ width:100%; height:100%; display:block; }
+.sig-print-img{ display:none; width:100%; height:100%; object-fit:contain; }
+
+.print-only{ display:none; }
+.no-print-col{ }
+
+.maintenance-box{
+  position:fixed; inset:0; z-index:99999;
+  background: rgba(0,0,0,.85);
+  color:#fff;
+  align-items:center; justify-content:center;
+  text-align:center; padding:20px;
+}
+.maintenance-card{
+  max-width:520px;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.15);
+  padding:18px 18px;
+  border-radius:14px;
+}
+
+.seal-info{
+  text-align:center;
+  font-size:9pt;
+  font-family:"Times New Roman", serif;
+  margin-top:10px;
+  opacity:.85;
+}
+
+@media (max-width:768px){
+  .paper-container{ padding:16px; }
+  .control-bar{ flex-direction:column; align-items:stretch; }
+  .footer-sign{ flex-direction:column; align-items:center; text-align:center; }
+  .sig-container{ width:100%; max-width:360px; }
+}
+
+/* ... restul fișierului rămâne neschimbat ... */
+
+@media print {
+  @page { 
+    margin: 1cm; 
+    size: landscape; 
+  }
+  body { background:#fff; -webkit-print-color-adjust:exact; margin:0; padding:0; }
+  .no-print, .navbar, footer, .control-bar, .auth-card, #dash-view, #hist-view, #setup-view, #auth-view, .btn { display:none !important; }
+
+  #reg-view { display:block !important; }
+  .paper-container { border:none; box-shadow:none; padding:0; margin:0; max-width:100%; }
+
+  /* Header Anexa 2 */
+  #anexa2-official-header { display:block !important; font-family:"Times New Roman", serif; color:#000; margin-bottom:18px; }
+  .anexa-top-right { text-align:right; font-weight:700; font-size:12pt; margin-bottom:14px; }
+  .anexa-title { text-align:center; font-weight:800; font-size:14pt; text-transform:uppercase; margin-bottom:4px; }
+  .anexa-subtitle { text-align:center; font-size:12pt; margin-bottom:6px; }
+  .anexa-date-line { text-align:center; font-size:12pt; margin-top:8px; }
+
+  /* Tabel - Eliminare coloane nedorite în print */
+  .omai-table { width:100% !important; border-collapse:collapse; font-family:"Times New Roman", serif; font-size:10pt; }
+  .omai-table th, .omai-table td { border:1px solid #000 !important; padding:4px; color:#000; }
+
+  /* Ascunde Nr. (1), Data Exp. (3) și Serie (ultima) */
+  .omai-table th:nth-child(1), .omai-table td:nth-child(1) { display:none !important; }
+  .omai-table th:nth-child(3), .omai-table td:nth-child(3) { display:none !important; }
+  .omai-table th:last-child, .omai-table td:last-child { display:none !important; }
+
+  /* Aliniere coloană descriere */
+  .omai-table td:nth-child(2) { width: 35% !important; text-align:left !important; }
+
+  /* Afișare text în loc de input-uri */
+  input, select, textarea, .sig-controls { display:none !important; }
+  .print-only { display:block !important; }
+  .d-print-block { display:block !important; }
+  .sig-print-img { display:block !important; }
+
+  /* Footer layout */
+  .footer-sign {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    margin-top: 30px !important;
+  }
+
+  /* Watermark fixat jos pe fiecare pagină */
+  #print-watermark {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 8.5pt;
+    background: white;
+    padding: 5px 0;
+    font-family: "Times New Roman", serif;
+    border-top: 1px solid #ddd;
+    white-space: nowrap;
+  }
+}
+/* =========================================================
+   OMAI PRINT FIX v10
+   - stabilizează coloanele a–h
+   - nu rupe blocul Semnătură
+   - mută automat pe pagina următoare dacă nu încape
+   ========================================================= */
+
+@media print {
+
+  /* =========================
+     TABEL – criterii a–h
+     ========================= */
+
+  .omai-table {
+    table-layout: fixed !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  /* Headerul cu literele a–h */
+  .omai-table thead tr:nth-child(2) th {
+    width: 22px !important;
+    min-width: 22px !important;
+    max-width: 22px !important;
+    padding: 3px 0 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    font-size: 10px !important;
+    line-height: 1.1 !important;
+    vertical-align: middle !important;
+  }
+
+  /* Titlul "Criterii (a-h)" */
+  .omai-table thead tr:nth-child(1) th {
+    white-space: nowrap !important;
+    text-align: center !important;
+  }
+
+  /* Celulele criteriilor */
+  .omai-table td {
+    vertical-align: top !important;
+  }
+
+  /* Dacă ai checkbox-uri / valori în criterii */
+  .omai-table td.crit-cell,
+  .omai-table td.crit-cell * {
+    text-align: center !important;
+  }
+
+  /* =========================
+     SEMNĂTURĂ / ÎNTOCMIT DE
+     ========================= */
+
+  /* NU rupe blocul între pagini */
+  .footer-sign {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Dacă e la limită, browserul îl mută pe pagina următoare */
+  .legend,
+  .omai-legend {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  /* =========================
+     INPUT-uri / PLACEHOLDER
+     ========================= */
+
+  /* Placeholder-ul NU trebuie să apară în PDF */
+  input::placeholder {
+    color: transparent !important;
+  }
+
+  /* Elimină umbre / efecte inutile la print */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* ===== END OMAI PRINT FIX v10 ===== */
+/* ===== Stare expirare stingătoare - CONTRAST PUTERNIC ===== */
+
+/* 1. ROȘU: Expirat (Verificare urgentă!) */
+tr.row-expired td {
+  background-color: #ffcdd2 !important; /* Roșu mai intens */
+  border-bottom: 1px solid #e57373 !important; /* Linie delimitare roșie */
+}
+/* Input-urile din zona roșie - text roșu închis pentru alertă */
+tr.row-expired td input, 
+tr.row-expired td select {
+  background-color: #ffebee !important; 
+  color: #b71c1c !important; 
+  font-weight: bold;
+}
+
+/* 2. PORTOCALIU: Expiră în luna curentă */
+tr.row-expires-now td {
+  background-color: #ffcc80 !important; /* Portocaliu intens */
+  border-bottom: 1px solid #ff9800 !important;
+}
+tr.row-expires-now td input, 
+tr.row-expires-now td select {
+  background-color: #fff3e0 !important;
+  color: #e65100 !important; /* Text portocaliu închis */
+  font-weight: bold;
+}
+
+/* 3. GALBEN: Expiră luna viitoare (Pregătire) */
+tr.row-expires-soon td {
+  background-color: #fff59d !important; /* Galben intens */
+  border-bottom: 1px solid #fbc02d !important;
+}
+tr.row-expires-soon td input, 
+tr.row-expires-soon td select {
+  background-color: #fffde7 !important;
+  color: #f57f17 !important; /* Text ocru/maro pentru a se vedea pe galben */
+  font-weight: bold;
+}
+
+/* Legendă vizuală (opțional, pentru claritate) */
+.status-indicator {
+  width: 10px; height: 10px; 
+  display: inline-block; 
+  border-radius: 50%; 
+  margin-right: 5px;
+}
+
+  .loc-month-title{
+    display:inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    border: 1px solid rgba(0,0,0,.08);
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 6px 18px rgba(0,0,0,.06);
+    font-size: 1.02rem;
+    line-height: 1.15;
+  }
+  @media (prefers-color-scheme: dark){
+    .loc-month-title{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
+    }
+  }
+  @media (max-width: 520px){
+    .loc-month-title{ font-size: .95rem; padding: 7px 12px; }
+  }
+
+
+/* ===== Month switcher (dashboard) ===== */
+.month-switcher{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top: 6px;
+}
+
+.month-btn{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.85);
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+}
+
+.month-btn:hover{ transform: translateY(-1px); }
+
+.loc-month-title{
+  display:inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.90);
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+  user-select:none;
+  cursor:pointer;
+}
+
+.month-hidden{
+  position:absolute !important;
+  left:-9999px !important;
+  width:1px !important;
+  height:1px !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+
+@media (prefers-color-scheme: dark){
+  .month-btn, .loc-month-title{
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  }
+}
+
+/* ===== HFN Modal (PDF Export) ===== */
+.hfn-modal.hidden{ display:none !important; }
+.hfn-modal{ position:fixed; inset:0; z-index:9999; }
+.hfn-modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.55); backdrop-filter: blur(3px); }
+.hfn-modal-card{
+  position:relative;
+  max-width: 520px;
+  margin: 10vh auto 0;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(20,20,20,.78);
+  color: #fff;
+  box-shadow: 0 24px 80px rgba(0,0,0,.55);
+  overflow:hidden;
+}
+@media (prefers-color-scheme: light){
+  .hfn-modal-card{
+    background: rgba(255,255,255,.98);
+    color:#111;
+    border: 1px solid rgba(0,0,0,.08);
+    box-shadow: 0 24px 80px rgba(0,0,0,.18);
+  }
+  .hfn-modal-backdrop{ background:rgba(0,0,0,.35); }
+}
+.hfn-modal-header{
+  display:flex; align-items:center; gap:12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+@media (prefers-color-scheme: light){
+  .hfn-modal-header{ border-bottom: 1px solid rgba(0,0,0,.08); }
+}
+.hfn-modal-icon{
+  width:38px; height:38px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(255,255,255,.10);
+  font-size:18px;
+}
+@media (prefers-color-scheme: light){
+  .hfn-modal-icon{ background: rgba(0,0,0,.05); }
+}
+.hfn-modal-titles{ flex:1; min-width:0; }
+.hfn-modal-title{ font-weight:800; letter-spacing:.2px; }
+.hfn-modal-subtitle{ opacity:.80; font-size: 13px; margin-top:2px; }
+.hfn-modal-x{
+  border:none; background:transparent; color:inherit;
+  width:34px; height:34px; border-radius:10px;
+  cursor:pointer; opacity:.85;
+}
+.hfn-modal-x:hover{ background: rgba(255,255,255,.10); opacity:1; }
+@media (prefers-color-scheme: light){
+  .hfn-modal-x:hover{ background: rgba(0,0,0,.06); }
+}
+.hfn-modal-body{ padding: 14px 16px; font-size: 14px; line-height:1.35; }
+.hfn-modal-actions{
+  display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255,255,255,.10);
+}
+@media (prefers-color-scheme: light){
+  .hfn-modal-actions{ border-top: 1px solid rgba(0,0,0,.08); }
+}
+.hfn-btn{
+  border-radius: 12px;
+  padding: 9px 12px;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.10);
+  color: inherit;
+  cursor: pointer;
+}
+@media (prefers-color-scheme: light){
+  .hfn-btn{ border: 1px solid rgba(0,0,0,.10); background: rgba(0,0,0,.04); }
+}
+.hfn-btn:hover{ transform: translateY(-1px); }
+.hfn-btn.primary{ background: rgba(25,118,210,.95); border-color: rgba(25,118,210,.95); color:#fff; }
+.hfn-btn.danger{ background: rgba(211,47,47,.95); border-color: rgba(211,47,47,.95); color:#fff; }
+.hfn-btn.ghost{ background: transparent; }

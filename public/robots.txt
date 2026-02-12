@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Blocare fișiere inutile
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /logs/
+Disallow: /private/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://stingator.hfn.ee/sitemap.xml

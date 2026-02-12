@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <title>Registru PSI - OMAI 135/2023</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+<div id="maintenance-box" class="maintenance-box" style="display:none;">
+  <div class="maintenance-card">
+    <h2>🔧 Sistem în mentenanță</h2>
+    <p>Registrul PSI este temporar indisponibil.</p>
+    <p>Vă rugăm reveniți mai târziu.</p>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top no-print">
+  <div class="container">
+    <a class="navbar-brand" href="#" onclick="return false;">
+      <i class="fa-solid fa-fire-extinguisher"></i> Registru PSI
+    </a>
+    <div class="ms-auto d-flex gap-2">
+      <button id="btnLogout" class="btn btn-outline-secondary btn-sm" onclick="logout()" style="display:none;">Ieșire</button>
+    </div>
+  </div>
+</nav>
+
+<div id="auth-view" class="view">
+  <div class="auth-card">
+    <h3 class="text-danger fw-bold mb-3 text-center">AUTENTIFICARE PSI</h3>
+
+    <div id="step-ph">
+      <label class="form-label small">Număr telefon (RO)</label>
+      <input type="tel" id="phIn" class="form-control mb-3" placeholder="07xx xxx xxx">
+      <button id="btnSendSms" class="btn btn-danger w-100" onclick="sendSms()">Trimite Cod</button>
+            <div class="small text-muted mt-2">
+        Vei primi codul pe WhatsApp.
+      </div>
+      <div class="mt-4 text-center">
+  <small class="text-muted">Ai probleme la autentificare?</small><br>
+<a href="#" onclick="contactAdmin('Nu mă pot loga'); return false;" class="text-decoration-none small">
+    <i class="fa-brands fa-whatsapp text-success"></i> Contactează Suport
+  </a>
+      </div>      
+ </div>
+   <div id="step-cd" class="hidden">
+      <label class="form-label small">Cod primit</label>
+      <input type="number" id="cdIn" class="form-control mb-3" placeholder="6 cifre">
+      <button class="btn btn-success w-100" onclick="verifyCode()">Verifică</button>
+      <button class="btn btn-link w-100 mt-2" onclick="backToPhone()">Schimbă numărul</button>
+    </div>
+
+    <div id="authMsg" class="alert alert-warning mt-3 small hidden"></div>
+  </div>
+</div>
+
+<div id="setup-view" class="view hidden">
+  <div class="paper-container">
+    <h4 class="mb-3">Configurare profil</h4>
+
+    <label class="form-label small">Nume societate</label>
+    <input type="text" id="compIn" class="form-control mb-3" placeholder="SC Exemplu SRL">
+
+    <label class="form-label small">Nume responsabil (Întocmit de)</label>
+    <input type="text" id="respInSetup" class="form-control mb-3" placeholder="Nume Prenume">
+
+    <label class="form-label small">Ziua notificării (1–28)</label>
+<input type="number" id="notifyDayIn" class="form-control mb-2" min="1" max="28" step="1" placeholder="1-28">
+<div class="form-text text-muted small mb-3">
+  În această zi vei primi notificare (WhatsApp / alte canale) pentru a întocmi registrul.
+  Aceeași zi apare în antetul Anexa 2 (luna/anul sunt din registrul selectat).
+</div>
+    <label class="form-label small text-primary fw-bold">Ai un cod de recomandare? (Opțional)</label>
+    <input type="text" id="refCodeIn" class="form-control mb-4 border-primary" placeholder="Ex: A8X92Z" style="text-transform:uppercase;">
+    <button class="btn btn-primary w-100" onclick="saveProfile()">Salvează</button>
+<hr class="my-4 border-secondary">
+    <div class="border border-danger rounded p-3 bg-light">
+      <h6 class="text-danger fw-bold"><i class="fa-solid fa-triangle-exclamation"></i> Zonă Periculoasă</h6>
+      <p class="small text-muted mb-2">
+        Ștergerea contului este ireversibilă. Toate datele (registre, credite, istoric) vor fi șterse definitiv, iar numărul tău va fi blocat pentru reînregistrare.
+      </p>
+      <button type="button" class="btn btn-outline-danger btn-sm w-100" onclick="deleteAccountUI()">
+  <i class="fa-solid fa-trash"></i> Șterge Contul Definitiv
+</button>
+    </div>
+    <div id="setupMsg" class="alert alert-warning mt-3 small hidden"></div>
+  </div>
+</div>
+
+<div id="dash-view" class="view hidden">
+  <div class="paper-container">
+    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+      <div>
+        <h4 class="text-danger m-0">📍 Locații / Clădiri</h4>
+        <small id="dashComp" class="text-muted">-</small>
+      </div>
+     <div class="d-flex gap-2 align-items-center">
+       <button class="btn btn-warning btn-sm fw-bold" onclick="showWallet()"><i class="fa-solid fa-coins"></i> Portofel</button>
+    <button class="btn btn-outline-primary btn-sm" onclick="editSettings()">Setări</button>
+</div>
+    </div>
+
+    <div id="loc-list" class="row g-3"></div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-danger" onclick="promptLoc()">+ Adaugă Clădire</button>
+    </div>
+
+    <div id="dashMsg" class="alert alert-warning mt-3 small hidden"></div>
+  </div>
+</div>
+<div id="wallet-view" class="view hidden">
+  <div class="paper-container">
+    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+      <h4 class="m-0"><i class="fa-solid fa-wallet text-warning"></i> Portofel & Donații</h4>
+      <button class="btn btn-outline-primary btn-sm" onclick="showDash()">🏠 Acasă</button>
+    </div>
+
+    <div class="card bg-light border-warning mb-4 shadow-sm text-center p-3">
+        <h6 class="text-muted">Sold Disponibil</h6>
+        <h1 class="display-4 fw-bold text-dark m-0" id="walletBalance">...</h1>
+        <div class="text-muted small">Credite</div>
+    </div>
+
+    <div class="card mb-4 border-info">
+      <div class="card-header bg-info text-white fw-bold">
+        <i class="fa-solid fa-users"></i> Câștigă Credite Gratuit!
+      </div>
+      <div class="card-body text-center">
+        <p class="small">Trimite acest cod prietenilor tăi. Când se înscriu, tu primești <b>20 credite</b>!</p>
+        
+        <div class="input-group mb-3">
+          <input type="text" id="myRefCodeDisplay" class="form-control text-center fw-bold fs-4" readonly value="..." style="letter-spacing: 2px;">
+          <button class="btn btn-outline-secondary" type="button" onclick="copyRefCode()">
+            <i class="fa-regular fa-copy"></i> Copiază
+          </button>
+        </div>
+        
+        <button class="btn btn-success w-100" onclick="shareRefCode()">
+          <i class="fa-brands fa-whatsapp"></i> Trimite pe WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <h5 class="mb-3">Susține Proiectul (Donație & Recompensă)</h5>
+    <p class="small text-muted mb-3">Aplicația este gratuită, dar serverele costă. Orice donație este recompensată automat cu credite.</p>
+    
+    <div class="row g-2 mb-4">
+      <div class="col-6">
+        <div class="card h-100 border-success text-center p-2">
+          <h5 class="text-success">Reward: 50 Credite</h5>
+          <h3 class="fw-bold">5 EUR</h3>
+          <div class="small text-muted mb-2">Donație sugerată</div>
+          
+          <input type="radio" class="btn-check" name="pkg" id="pkg50" autocomplete="off" onchange="selectPackage(50, 5)" style="display:none;">
+          <label class="btn btn-outline-success btn-sm w-100" for="pkg50" style="display:none;">Alege</label>
+        </div>
+      </div>
+      
+      <div class="col-6">
+        <div class="card h-100 border-success text-center p-2">
+          <div class="badge bg-warning text-dark position-absolute top-0 end-0">Popular</div>
+          <h5 class="text-success">Reward: 150 Credite</h5>
+          <h3 class="fw-bold">10 EUR</h3>
+          <div class="small text-muted mb-2">Donație sugerată</div>
+          
+          <input type="radio" class="btn-check" name="pkg" id="pkg150" autocomplete="off" onchange="selectPackage(150, 10)" style="display:none;">
+          <label class="btn btn-outline-success btn-sm w-100" for="pkg150" style="display:none;">Alege</label>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4 text-muted">
+
+    <h5 class="mb-3">Plată Rapidă prin Revolut <span class="badge bg-primary">RON</span></h5>
+    <p class="small text-muted">Preferi Revolut? Trimite suma și confirmă pe WhatsApp. Adminul va adăuga creditele manual.</p>
+
+    <div class="row g-2 mb-4">
+      <div class="col-6">
+        <div class="card h-100 border-primary text-center p-2 bg-light">
+          <div class="fw-bold text-primary">50 Credite</div>
+          <div class="h4 fw-bold text-dark">25 RON</div>
+          <button class="btn btn-sm btn-primary w-100 mb-1" onclick="payRevolut(25, 50)" style="display:none;">
+            <i class="fa-solid fa-bolt" style="display:none;"></i> Trimite
+          </button>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="card h-100 border-primary text-center p-2 bg-light">
+          <div class="fw-bold text-primary">150 Credite</div>
+          <div class="h4 fw-bold text-dark">50 RON</div>
+          <button class="btn btn-sm btn-primary w-100 mb-1" onclick="payRevolut(50, 150)" style="display:none;">
+            <i class="fa-solid fa-bolt" style="display:none;"></i> Trimite
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="paypal-area" class="hidden text-center">
+       <p class="mb-2 text-muted">Donație de <b id="payAmount">0</b> EUR (Recompensă: <b id="payCredits">0</b> credite):</p>
+       <div id="paypal-button-container"></div>
+    </div>
+
+    <h6 class="mb-2">Istoric Tranzacții</h6>
+    <div class="table-responsive">
+      <table class="table table-sm table-striped text-small">
+        <tbody id="walletHistoryBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  
+<div id="hist-view" class="view hidden">
+  <div class="paper-container">
+    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+      <h4 class="text-danger m-0" id="histTitle">Istoric</h4>
+      <button class="btn btn-outline-primary btn-sm" onclick="showDash()">🏠 Acasă</button>
+    </div>
+
+    <button class="btn btn-success w-100 mb-3" onclick="openCurrentMonth()">
+      📝 Deschide Luna Curentă
+    </button>
+
+    <div id="month-list"></div>
+    <div id="histMsg" class="alert alert-warning mt-3 small hidden"></div>
+  </div>
+</div>
+
+<div id="reg-view" class="view hidden">
+  <div id="importModal" class="modal fade" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title text-dark">⚠️ Lipsă date luna curentă</h5>
+      </div>
+      <div class="modal-body text-center">
+        <p>Nu există verificări înregistrate pentru <strong><span id="impLoc"></span></strong>.</p>
+        <p class="text-muted">Doriți să importați lista din <span id="impSource" class="fw-bold"></span>?</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="addRow()">Nu (Manual)</button>
+        <button type="button" class="btn btn-primary" onclick="executeImport()">Da, Importă</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="container no-print" style="max-width: 1000px;">
+    <div class="control-bar">
+     <div class="control-group align-items-center">
+  <button class="btn btn-outline-primary btn-sm" onclick="showDash()">🏠 Acasă</button>
+  <button class="btn btn-outline-secondary btn-sm" onclick="showHist()">⬅ Înapoi</button>
+ </div>
+
+      <div style="flex: 1; text-align: center;">
+  <strong class="d-block text-danger mb-1" id="webComp">-</strong>
+<div class="month-switcher">
+    <button type="button" class="month-btn" title="Luna anterioară" onclick="shiftMonth(-1)">‹</button>
+    <div id="locMonthDisplay" class="loc-month-title" title="Schimbă luna" onclick="openMonthPicker()">-</div>
+    <button type="button" class="month-btn" title="Luna următoare" onclick="shiftMonth(1)">›</button>
+  </div>
+
+  <input type="month" id="regMonth" class="month-hidden">
+  <small class="text-muted d-none" id="webLoc">-</small>
+</div>
+
+
+
+
+      <div class="control-group justify-content-end">
+        <button class="btn btn-success btn-sm" onclick="saveData()">💾 Salvează</button>
+        <button class="btn btn-dark btn-sm" onclick="exportPdf()">🖨️ PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="paper-container">
+    <div id="anexa2-official-header" class="print-only" style="display:none;">
+      <div class="anexa-top-right">Anexa nr. 2 la normele tehnice</div>
+      <div class="anexa-title">REGISTRU DE EVIDENŢĂ</div>
+      <div class="anexa-subtitle">a situației constatate la stingătoarele de incendiu</div>
+      <div class="anexa-date-line"></div>
+    </div>
+
+    <div class="info-box no-print mt-3 p-3 border rounded bg-light shadow-sm">
+  <div class="row">
+    <div class="col-md-6 mb-2">
+      <h6 class="fw-bold text-dark"><i class="fa-solid fa-barcode text-primary"></i> Identificare Serie / An</h6>
+      <p class="small text-muted mb-0">
+        <strong>Unde găsesc seria?</strong><br>
+        Seria este de obicei <strong>ștanțată</strong> pe corpul metalic al buteliei (partea superioară) sau tipărită pe eticheta producătorului. 
+        <br><em>(Ex: "SERIE-12345/2024")</em>.
+      </p>
+      <p class="small text-muted mt-1">
+        * Introducerea seriei asigură <strong>trasabilitatea</strong> și evită confuzia între stingătoare identice.
+      </p>
+    </div>
+
+    <div class="col-md-6">
+      <h6 class="fw-bold text-dark"><i class="fa-solid fa-palette text-warning"></i> Legendă Culori (Prioritate)</h6>
+      <ul class="list-unstyled small mb-0">
+        <li class="d-flex align-items-center mb-1">
+          <span class="d-inline-block border border-secondary rounded me-2" style="width:18px; height:18px; background-color: #ffe6e6;"></span>
+          <span><strong>Roșu:</strong> Expirat (Verificare urgentă!)</span>
+        </li>
+        <li class="d-flex align-items-center mb-1">
+          <span class="d-inline-block border border-secondary rounded me-2" style="width:18px; height:18px; background-color: #fff5e6;"></span>
+          <span><strong>Portocaliu:</strong> Expiră în luna curentă.</span>
+        </li>
+        <li class="d-flex align-items-center">
+          <span class="d-inline-block border border-secondary rounded me-2" style="width:18px; height:18px; background-color: #fffae6;"></span>
+          <span><strong>Galben:</strong> Expiră luna viitoare (Pregătire).</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <hr class="my-2">
+  
+  <div class="text-center small text-muted">
+    <i class="fa-solid fa-print"></i> Această secțiune de informații și butoanele de acțiune <strong>nu</strong> vor apărea pe documentul tipărit/PDF.
+  </div>
+</div>
+
+    <div id="sealBanner" class="alert alert-warning no-print" style="display:none;"></div>
+
+    <div class="mb-2 no-print">
+      <strong>Luna/Anul verificării:</strong>
+      <span id="printMonthTxt" style="border-bottom:1px dotted #000; padding:0 10px;"></span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle omai-table">
+        <thead class="table-light">
+          <tr>
+            <th rowspan="2" class="d-none d-print-table-cell" style="min-width:40px;">Nr.</th>
+            
+            <th rowspan="2" style="min-width:280px;">Producător / Tip și model / Loc amplasare</th>
+            
+            <th rowspan="2" style="min-width:125px; color:#d32f2f;">Data Exp.</th>
+            
+            <th colspan="8">Criterii (a-h)</th>
+            
+            <th rowspan="2" style="min-width:110px;">Data remedierii</th>
+            
+            <th rowspan="2" style="min-width:140px;" class="no-print-col">Serie (opțional)</th>
+
+            <th rowspan="2" class="no-print" style="width: 50px;">🗑️</th>
+          </tr>
+          <tr>
+            <th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th><th>h</th>
+          </tr>
+        </thead>
+        <tbody id="tblBody"></tbody>
+      </table>
+    </div>
+
+    <div class="d-flex gap-2 text-center mb-3 no-print">
+      <button class="btn btn-outline-danger btn-sm w-50" onclick="addRow()">+ Adaugă Rând</button>
+      <button class="btn btn-success btn-sm w-50" onclick="saveData()">💾 Salvează</button>
+    </div>
+
+  <div class="mt-3 small" style="font-size: 8.5pt; line-height: 1.3; text-align: left;">
+  <div style="margin-bottom:2px;"><strong>Legendă:</strong></div>
+  <div style="margin-bottom:2px;">a) stingătorul de incendiu este amplasat în locația stabilită prin planurile de evacuare;</div>
+  <div style="margin-bottom:2px;">b) stingătorul de incendiu este amplasat astfel încât marcajul cu tipul stingătorului de incendiu și instrucțiunile de utilizare sunt vizibile;</div>
+  <div style="margin-bottom:2px;">c) accesul la stingătorul de incendiu nu este blocat;</div>
+  <div style="margin-bottom:2px;">d) locul de amplasare a stingătorului de incendiu este marcat;</div>
+  <div style="margin-bottom:2px;">e) presiunea afișată de indicatorul de presiune este în intervalul nominal marcat de producător;</div>
+  <div style="margin-bottom:2px;">f) existența și integritatea sigiliilor; </div>
+  <div style="margin-bottom:2px;">g) încadrarea în termenele de verificare/reîncărcare menționate pe etichetă, după caz;</div>
+  <div>h) masa stingătoarelor de incendiu cu CO<sub>2</sub> sau agent curat.</div>
+  <div style="margin-top:5px; font-style: italic; border-top: 1px solid #ddd; pt-1;">
+    <strong>Notă:</strong> Identificarea fiecărui stingător prin <strong>serie și an de fabricație</strong> este obligatorie în Registrul de evidență pentru a asigura trasabilitatea verificărilor (conform Anexei nr. 2) și pentru a monitoriza durata maximă de viață de 20 de ani a echipamentelor (conform Art. 19 din OMAI nr. 135/2023).
+  </div>
+</div>
+
+<div class="footer-sign mt-4">
+  <div style="min-width:250px; text-align:left;">
+    <p class="mb-1">Întocmit de:</p>
+    <input type="text" id="respName" class="form-control border-0 border-bottom rounded-0 text-center fw-bold no-print"
+           placeholder="Nume responsabil..." onkeyup="syncRespName(this.value)">
+    <div id="printRespName" class="d-none d-print-block fw-bold border-bottom pb-1 text-center" style="min-height: 25px;"></div>
+  </div>
+
+  <div style="min-width:250px; text-align:center;">
+    </div>
+</div>
+
+<div id="print-watermark" class="print-only">
+  Document generat digital de https://stingator.hfn.ee | Conform OMAI 135/2023 – registru electronic PSI
+</div>
+  </div>
+</div>
+  <div id="deleteModal" class="modal fade" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title"><i class="fa-solid fa-trash-can"></i> Ștergere Stingător</h5>
+      </div>
+      <div class="modal-body text-center">
+        <p class="fs-5">Sigur doriți să ștergeți acest rând?</p>
+        <p class="text-muted small">Acțiunea se va finaliza după apăsarea butonului "Salvează".</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+        <button type="button" class="btn btn-danger" onclick="executeDelete()">Da, Șterge</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="importModal" class="modal fade" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title text-dark"><i class="fa-solid fa-triangle-exclamation"></i> Atenție!</h5>
+      </div>
+      <div class="modal-body text-center">
+        <p class="mb-3">Nu există stingătoare înregistrate pentru această lună în <strong><span id="impLoc"></span></strong>.</p>
+        <p class="small text-muted">Doriți să importați lista și seriile din ultima verificare (<span id="impSource"></span>)?</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="addRow()">Nu, adaug manual</button>
+        <button type="button" class="btn btn-primary" onclick="executeImport()">Da, importă datele</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="no-print mt-auto">
+  <div class="container text-center">
+    <p class="mb-2">&copy; 2026 Evidență PSI. Conformitate cu OMAI 135/2023.</p>
+    <p class="small text-white-50">Material informativ. Pentru servicii autorizate, contactați o firmă acreditată IGSU.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js?v=2"></script>
+
+<script>
+  window.addEventListener('load', () => {
+    if (typeof window.sendSms !== 'function') {
+      const av = document.getElementById('auth-view');
+      if (av) av.classList.remove('hidden');
+      const msg = document.getElementById('authMsg');
+      if (msg){
+        msg.classList.remove('hidden');
+        msg.innerHTML = '<span class="text-danger">Nu s-a încărcat <b>js/app.js</b>. Verifică în Network (DevTools) că fișierul există (HTTP 200) și fă Ctrl+Shift+R. Dacă folosești Cloudflare cache/Worker, mărește versiunea ?v=...</span>';
+      }
+    }
+  });
+</script>
+
+
+<!-- ===== PDF Export Modal (HFN) ===== -->
+<div id="pdfModal" class="hfn-modal hidden" aria-hidden="true">
+  <div class="hfn-modal-backdrop"></div>
+  <div class="hfn-modal-card" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle" aria-describedby="pdfModalDesc">
+    <div class="hfn-modal-header">
+      <div class="hfn-modal-icon" aria-hidden="true">📄</div>
+      <div class="hfn-modal-titles">
+        <div id="pdfModalTitle" class="hfn-modal-title">Export PDF</div>
+        <div id="pdfModalDesc" class="hfn-modal-subtitle">-</div>
+      </div>
+      <button type="button" class="hfn-modal-x" id="pdfModalX" aria-label="Închide">✕</button>
+    </div>
+    <div class="hfn-modal-body" id="pdfModalBody"></div>
+    <div class="hfn-modal-actions" id="pdfModalActions"></div>
+  </div>
+</div>
+
+</body>
+</html>

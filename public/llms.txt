@@ -1,0 +1,26 @@
+# llms.txt for https://stingator.hfn.ee
+# Purpose: Provide a concise map of the site for LLM-based indexing and retrieval.
+
+Site name: Registru PSI Stingătoare
+Base URL: https://stingator.hfn.ee
+
+Primary pages:
+- Home: https://stingator.hfn.ee/
+- Registru de evidență: https://stingator.hfn.ee/registru.html
+- Ajutor / Ghid: https://stingator.hfn.ee/ajutor.html
+- Feedback / Contact: https://stingator.hfn.ee/feedback.html
+
+Extinguishers:
+- Pulbere: https://stingator.hfn.ee/detalii-pulbere.html
+- Spumă: https://stingator.hfn.ee/detalii-spuma.html
+- CO2: https://stingator.hfn.ee/detalii-co2.html
+- Tip F: https://stingator.hfn.ee/tip_f.html
+- Tip D: https://stingator.hfn.ee/tip_d.html
+
+Legal:
+- Termeni: https://stingator.hfn.ee/termeni.html
+- Confidențialitate: https://stingator.hfn.ee/confidentialitate.html
+
+Notes:
+- The registry is intended for evidence/management of extinguishers; users should follow local PSI regulations and authorized service guidance.
+
